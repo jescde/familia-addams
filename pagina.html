@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Creepster&display=swap">
+    <title>Addam´s family</title>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="audio/The Addams Family (2019) - Theme Song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Pantalla de bienvenida al usuario mientras se identifica -->
+    <div id="welcome-screen">
+        <div id="thing-hand">
+            <img src="photos/thing.png" alt="Cosa" id="thing-img">
+        </div>
+        <h2>¡Bienvenido a la Mansión Addams!</h2>
+        <p>Introduce tu nombre para continuar.</p>
+        <input type="text" id="username-input" placeholder="Nombre">
+        <button id="enter-btn">Entrar</button>
+    </div>
+
+    <!-- Imagen de Miércoles Addams para denegar acceso -->
+    <div id="access-denied">
+        <img src="photos/miercoles.png" alt="Acceso denegado Miércoles">
+        <p>¡Tú no eres Noelia! No puedes entrar.</p>
+    </div>
+    
+    
+     <!-- Contenido principal (Oculto al inicio) -->
+    <div id="main-content">
+        <header>
+            <h1 id="welcome-message">La Familia Addams</h1>
+        </header>
+         <main>
+            <section class="intro">
+                <h2>Bienvenido a la Mansión Addams</h2>
+                <p>Descubre el mundo espeluznante y divertido de la familia más extraña y encantadora.</p>
+            </section>
+        </main>
+       
+        <footer>
+            <p>&copy; 2025 - Inspirado en La Familia Addams</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
