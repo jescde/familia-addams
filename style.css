@@ -116,7 +116,7 @@ button:hover {
     flex-direction: column;
     justify-content: center; /* Centra verticalmente */
     align-items: center; /* Centra horizontalmente */
-    padding: 40px; /* Aumentamos el padding para mejor distribución */
+    padding: 40px; /* Espacio alrededor del contenido */
     box-sizing: border-box;
 }
 
@@ -134,7 +134,7 @@ button:hover {
     align-items: center; /* Centra horizontalmente los elementos internos */
     justify-content: center; /* Centra verticalmente los elementos internos */
     width: 100%;
-    max-width: 800px; /* Mantenemos el ancho máximo */
+    max-width: 800px; /* Ancho máximo para pantallas grandes */
     text-align: center; /* Centra el texto */
 }
 
@@ -185,7 +185,7 @@ button:hover {
     display: flex;
     justify-content: space-around; /* Distribuimos los elementos interactivos */
     align-items: center;
-    margin: 20px 0; /* Añadimos margen para mejor espaciado */
+    margin: 20px 0; /* Espaciado */
 }
 
 .spider-web {
@@ -309,6 +309,267 @@ button:hover {
     background: #d4af37;
     color: #000;
     transform: scale(1.05);
+}
+
+/* Media query para iPhones 11, 13, 14, etc. (ancho entre 360px y 430px) */
+@media (max-width: 430px) and (min-width: 360px) {
+    /* Pantalla de bienvenida */
+    #welcome-screen {
+        padding-top: 20px;
+    }
+
+    #welcome-screen h2 {
+        font-size: 1.8rem; /* Ajustado para iPhones */
+    }
+
+    #welcome-screen p {
+        font-size: 1rem; /* Ajustado */
+    }
+
+    #thing-hand {
+        width: 80px; /* Ajustado */
+        margin-bottom: 15px;
+    }
+
+    @keyframes moveHand {
+        0% {
+            transform: translateX(-100vw);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes walkHand {
+        0%, 100% {
+            transform: rotate(0deg) translateY(0);
+        }
+        25% {
+            transform: rotate(5deg) translateY(-2px);
+        }
+        50% {
+            transform: rotate(0deg) translateY(0);
+        }
+        75% {
+            transform: rotate(-5deg) translateY(-2px);
+        }
+    }
+
+    input, button {
+        font-size: 1rem; /* Ajustado */
+        padding: 8px;
+    }
+
+    /* Contenido principal */
+    #main-content {
+        padding: 20px; /* Ajustado para iPhones */
+        justify-content: center; /* Centrado vertical */
+        align-items: center; /* Centrado horizontal */
+    }
+
+    .mansion-entrance {
+        max-width: 95%; /* Aprovechamos más el ancho */
+    }
+
+    .welcome-text h1 {
+        font-size: 2rem; /* Ajustado para iPhones */
+    }
+
+    .intro-message {
+        font-size: 1.1rem; /* Ajustado */
+    }
+
+    .mansion-door {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: 400px; /* Ajustado */
+    }
+
+    /* Elementos interactivos */
+    .interactive-elements {
+        min-height: auto;
+        display: flex;
+        flex-direction: column; /* Apilamos verticalmente */
+        align-items: center;
+        gap: 40px; /* Más espacio entre elementos */
+        margin: 40px 0; /* Más espaciado */
+    }
+
+    /* Escorpión */
+    .spider-web {
+        width: 200px; /* Ajustado */
+        height: 200px;
+        padding-bottom: 30px;
+    }
+
+    #spider-img {
+        width: 100px; /* Ajustado */
+    }
+
+    .spider-message {
+        font-size: 0.9rem; /* Ajustado */
+    }
+
+    /* Cosa */
+    .ghostly-hand {
+        width: 120px; /* Ajustado */
+        height: 160px;
+        padding-bottom: 20px;
+    }
+
+    #thing-img-main {
+        width: 80px; /* Ajustado */
+    }
+
+    .thing-message {
+        font-size: 0.9rem; /* Ajustado */
+    }
+
+    .go-to-passage {
+        font-size: 0.8rem; /* Ajustado */
+        padding: 5px 10px;
+    }
+
+    /* Botón y pista */
+    #explore-btn {
+        padding: 10px 20px;
+        font-size: 1rem; /* Ajustado */
+    }
+
+    .hint {
+        font-size: 0.8rem; /* Ajustado */
+    }
+
+    /* Footer */
+    footer {
+        font-size: 0.8rem; /* Ajustado */
+    }
+
+    /* Acertijo */
+    #juego {
+        padding: 10px;
+    }
+
+    select, button {
+        font-size: 12px;
+        padding: 3px;
+        margin: 6px;
+    }
+
+    #mensaje {
+        font-size: 14px;
+    }
+
+    /* Acceso denegado */
+    #access-denied img {
+        width: 120px;
+    }
+}
+
+/* Media query para pantallas más grandes que 430px (como tablets y ordenadores) */
+@media (min-width: 431px) {
+    /* Aseguramos que el diseño para pantallas grandes no se vea afectado */
+    #main-content {
+        padding: 40px;
+    }
+
+    .mansion-entrance {
+        max-width: 800px;
+    }
+
+    .welcome-text h1 {
+        font-size: 3rem;
+    }
+
+    .intro-message {
+        font-size: 1.5rem;
+    }
+
+    .mansion-door {
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .interactive-elements {
+        flex-direction: row; /* Distribución horizontal en pantallas grandes */
+        justify-content: space-around;
+    }
+
+    .spider-web {
+        width: 300px;
+        height: 300px;
+    }
+
+    #spider-img {
+        width: 150px;
+    }
+
+    .ghostly-hand {
+        width: 150px;
+        height: 200px;
+    }
+
+    #thing-img-main {
+        width: 100px;
+    }
+
+    #explore-btn {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Media query para pantallas muy pequeñas (menores a 360px, por si acaso) */
+@media (max-width: 359px) {
+    #welcome-screen h2 {
+        font-size: 1.5rem;
+    }
+
+    #welcome-screen p {
+        font-size: 0.9rem;
+    }
+
+    #thing-hand {
+        width: 60px;
+    }
+
+    #main-content {
+        padding: 15px;
+    }
+
+    .welcome-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .intro-message {
+        font-size: 1rem;
+    }
+
+    .mansion-door {
+        max-width: 300px;
+    }
+
+    .spider-web {
+        width: 180px;
+        height: 180px;
+    }
+
+    #spider-img {
+        width: 90px;
+    }
+
+    .ghostly-hand {
+        width: 100px;
+        height: 140px;
+    }
+
+    #thing-img-main {
+        width: 70px;
+    }
+
+    #explore-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
 }
 
 /* Resto del CSS (sin cambios) */
