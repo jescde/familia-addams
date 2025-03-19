@@ -67,13 +67,41 @@ function mostrarJuego() {
 function fadeOutGif() {
     let gif = document.getElementById("wednesday-gif");
     let finalImage = document.getElementById("final-image");
+    let messageGif = document.getElementById("message-gif");
+    let introMessage = document.getElementById("wednesday-text");
 
-    gif.style.opacity = "0"; // Desvanecer el GIF
+    // Crear el nuevo mensaje
+    let newMessage = document.createElement("p");
+    newMessage.textContent = "PÁGINA EN CONSTRUCCIÓN. SE VIENEN COSITAS";
+    newMessage.style.position = "absolute";
+    newMessage.style.top = "50%";
+    newMessage.style.left = "50%";
+    newMessage.style.transform = "translate(-50%, -50%)";
+    newMessage.style.color = "white";
+    newMessage.style.fontSize = "20px";
+    newMessage.style.fontWeight = "bold";
+    newMessage.style.textShadow = "2px 2px 4px black";
+    newMessage.style.whiteSpace = "nowrap";
+    newMessage.style.display = "none"; // Oculto inicialmente
+
+    // Obtener el contenedor de la imagen final y añadir el mensaje
+    let imageContainer = document.querySelector(".image-container");
+    imageContainer.style.position = "relative"; // Para posicionar el mensaje dentro
+    imageContainer.appendChild(newMessage);
+
+    // Desvanecer elementos antiguos
+    gif.style.opacity = "0";
+    messageGif.style.opacity = "0";
+    introMessage.style.opacity = "0";
 
     setTimeout(() => {
-        gif.style.display = "none"; // Ocultar el GIF después de la animación
-        finalImage.style.display = "block"; // Mostrar la imagen final
-    }, 1000); // 1000ms = 1 segundo (coincide con el transition del CSS)
+        gif.style.display = "none";
+        messageGif.style.display = "none";
+        introMessage.style.display = "none";
+
+        finalImage.style.display = "block";
+        newMessage.style.display = "block"; // Mostrar el mensaje sobre la imagen final
+    }, 1000);
 }
 
 // Efecto de palpitar sobre el mensaje de Miercoles
