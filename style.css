@@ -213,52 +213,400 @@ select, button {
     width: 90%;
 }
 
-#wednesday-text {
-    color: white;
-    text-align: center;
-    font-size: 18px;
+#verja-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    display: none;
+    background: #1a1a1a; /* Fondo oscuro */
 }
 
-#wednesday-gif {
-    cursor: pointer; /* Hace que el cursor cambie a una mano al pasar sobre el GIF */
-    transition: opacity 1s ease-out; /* Efecto de desvanecimiento en 1 segundo */
-}
-
-#final-image {
-    display: none; /* Oculta la imagen final inicialmente */
-    width: 300px; /* Ajusta el tamaño según sea necesario */
-    height: auto; /* Mantiene la proporción */
-}
-
-.image-container{
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente si es necesario */
-    width: 100vw; /* Ocupar todo el ancho de la pantalla */
-    height: 100vh; /* Ocupar todo el alto de la pantalla */
-}
-
-@keyframes palpitar {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.8; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* Aplica el efecto al mensaje */
-.palpitar {
-    display: inline-block;
-    animation: palpitar 1.7s infinite ease-in-out;
-}
-
-#message-gif {
+#left-gate, #right-gate {
     position: absolute;
-    bottom: -40px; /* Ajusta según necesidad */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 4px black;
-    opacity: 1; /* Asegurar visibilidad */
-    white-space: nowrap; /* Evita saltos de línea */
+    width: 50%;
+    height: 100%;
+    background: #1a1a1a; /* Fondo uniforme */
+    transition: transform 2s ease-in-out;
+    overflow: hidden;
+}
+
+#left-gate {
+    left: 0;
+    transform: translateX(0);
+}
+
+#right-gate {
+    right: 0;
+    transform: translateX(0);
+}
+
+/* Barras y estructura */
+#left-gate::before, #right-gate::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to right,
+        #2b2b2b 0px,    /* Barras gris oscuro */
+        #2b2b2b 15px,   /* Ancho de las barras */
+        transparent 15px,
+        transparent 60px /* Espacio entre barras */
+    );
+    border-top: 20px solid #2b2b2b;    /* Barra horizontal superior */
+    border-bottom: 20px solid #2b2b2b; /* Barra horizontal inferior */
+    border-left: 10px solid #2b2b2b;   /* Borde lateral */
+    border-right: 10px solid #2b2b2b;  /* Borde lateral */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra exterior */
+}
+
+/* Puntas góticas simplificadas */
+#left-gate::after, #right-gate::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 40px; /* Altura de las puntas */
+    top: -20px;   /* Alineado con la barra superior */
+    left: 0;
+    background: repeating-linear-gradient(
+        to right,
+        #2b2b2b 0px,
+        #2b2b2b 15px,   /* Ancho igual a las barras */
+        transparent 15px,
+        transparent 60px
+    );
+    clip-path: polygon(
+        0 100%, 7.5px 0, 15px 100% /* Triángulos simples y simétricos */
+    );
+}
+
+/* Animación de apertura */
+.verja-open #left-gate {
+    transform: translateX(-100%);
+}
+
+.verja-open #right-gate {
+    transform: translateX(100%);
+}
+
+/* Estilo general de la página principal */
+#main-content {
+    background: url('photos/mansion-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Creepster', cursive;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Contenedor de la entrada */
+.mansion-entrance {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Texto de bienvenida */
+.welcome-text {
+    margin-bottom: 30px;
+}
+
+.welcome-text h1 {
+    font-size: 3rem;
+    text-shadow: 3px 3px 5px #000;
+    color: #d4af37; /* Dorado para un toque elegante */
+}
+
+.intro-message {
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 3px #000;
+    color: #ccc;
+}
+
+/* Puerta de la mansión */
+.mansion-door {
+    position: relative;
+    margin: 0 auto;
+    width: 600px;
+    height: 450px;
+}
+
+#mansion-door-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 5px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Elementos interactivos */
+.interactive-elements {
+    position: relative;
+    height: 200px;
+}
+
+/* Contenedor de la telaraña */
+.spider-web {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    width: 300px; /* Aumentamos el tamaño del contenedor para la araña más grande */
+    height: 300px; /* Ajustamos la altura para dar espacio al mensaje */
+    cursor: pointer;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px; /* Espacio adicional para el mensaje */
+}
+
+/* Imagen de la araña */
+#spider-img {
+    width: 300px; /* Aumentamos el tamaño de la araña */
+    position: relative;
+    transition: transform 0.5s ease;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.8));
+}
+
+/* Efecto al pasar el mouse */
+.spider-web:hover #spider-img {
+    transform: scale(1.2);
+}
+
+.spider-message {
+    display: none;
+    color: #fff;
+    font-family: 'Creepster', cursive;
+    font-size: 1.2rem; /* Texto más grande */
+    text-shadow: 2px 2px 4px #000;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: rgba(0, 0, 0, 0.9); /* Fondo más oscuro */
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 10px;
+    width: 80%;
+}
+
+/* Clase para mostrar el mensaje */
+.spider-message.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Contenedor de Cosa */
+.ghostly-hand {
+    position: absolute;
+    bottom: 20px;
+    right: 10%;
+    width: 150px;
+    height: 200px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 40px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Imagen de Cosa */
+#thing-img-main {
+    width: 100px;
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto al pasar el mouse */
+.ghostly-hand:hover #thing-img-main {
+    transform: rotate(10deg);
+}
+
+/* Estilo del botón/enlace dentro del mensaje */
+.secret-passage-btn {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px 10px;
+    background: #4a2f1a; /* Marrón óxido, igual que el botón "Explorar la Mansión" */
+    color: #fff;
+    font-family: 'Creepster', cursive;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid #d4af37; /* Borde dorado */
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.secret-passage-btn:hover {
+    background: #d4af37;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* Asegurar que el mensaje tenga espacio para el botón */
+.thing-message {
+    display: none;
+    color: #fff;
+    font-family: 'Creepster', cursive;
+    font-size: 1rem;
+    text-shadow: 2px 2px 4px #000;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px; /* Aumentamos el padding para el botón */
+    border-radius: 5px;
+    position: absolute;
+    bottom: 10px;
+    width: 80%;
+}
+
+/* Clase para mostrar el mensaje */
+.thing-message.show {
+    display: block;
+    opacity: 1;
+}
+
+/* Estilo del enlace */
+.go-to-passage {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #4a2f1a; /* Marrón óxido */
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Creepster', cursive;
+    font-size: 0.9rem;
+    border: 1px solid #d4af37;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse sobre el enlace */
+.go-to-passage:hover {
+    background: #d4af37;
+    color: #000;
+    transform: scale(1.05);
+}
+
+#thing-img-main {
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.ghostly-hand:hover #thing-img-main {
+    transform: rotate(10deg);
+}
+
+/* Botón de explorar y pista */
+.call-to-action {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 60px; /* Añadimos más margen inferior para separar del footer */
+}
+
+/* Estilo del botón */
+#explore-btn {
+    background: #4a2f1a;
+    color: #fff;
+    border: 2px solid #d4af37;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Creepster', cursive;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#explore-btn:hover {
+    background: #d4af37;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* Pista */
+.hint {
+    font-size: 1rem;
+    color: #999;
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #999;
+    text-shadow: 1px 1px 2px #000;
+    padding: 10px 0; /* Añadimos un poco de padding para mejor presentación */
+}
+
+/* Asegurar visibilidad */
+#main-content:not(.hidden) {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+/* Contenedor de la telaraña */
+.spider-web {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Imagen de la araña */
+#spider-img {
+    width: 100px;
+    position: relative;
+    transition: transform 0.5s ease;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.8));
+}
+
+/* Efecto al pasar el mouse */
+.spider-web:hover #spider-img {
+    transform: scale(1.2);
+}
+
+/* Mensaje oculto */
+.spider-message {
+    display: none; /* Oculto por defecto */
+    color: #fff;
+    font-family: 'Creepster', cursive;
+    font-size: 1rem;
+    text-shadow: 2px 2px 4px #000;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Clase para mostrar el mensaje */
+.spider-message.show {
+    display: block;
+    opacity: 1;
 }

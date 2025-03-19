@@ -46,30 +46,44 @@
         <img id="miercoles-img" src="photos/miercoles.png" alt="Acceso denegado Miércoles">
         <p>¡Alto! No tienes permiso para entrar aquí.</p>
     </div>
+
+    <div id="verja-container">
+        <!-- Puertas de la verja -->
+        <div id="left-gate"></div>
+        <div id="right-gate"></div>
+    </div>
     
     
-     <!-- Contenido principal (Oculto al inicio) -->
-    <div id="main-content">
-        <header>
-            <h1 id="welcome-message">La Familia Addams</h1>
-        </header>
-         <main>
-            <section class="intro">
-                <h1 id="wednesday-text">Así que has podido entrar...</h1>
-
-                <!-- GIF inicial -->
-                <img id="wednesday-gif" src="photos/wednesday.gif" alt="animacion" onclick="fadeOutGif()">
-
-                <!-- Imagen oculta (se mostrará después del efecto)-->
-                 <div class="image-container">
-                    <img id="final-image" src="photos/joke.png" alt="imagen revelada">
-                    <p id="message-gif">Pulsa sobre el gif</p>
-                 </div>
-            </section>
-        </main>
-       
+    <!-- Contenido principal (Oculto al inicio) -->
+    <div id="main-content" class="hidden">
+        <div class="mansion-entrance">
+            <div class="welcome-text">
+                <h1 id="welcome-message">Bienvenida a la Mansión Addams, [Nombre]</h1>
+                <p class="intro-message">¡Has pasado la prueba, pero cuidado... aquí las cosas no son lo que parecen! ¿Te atreves a explorar?</p>
+            </div>
+            <div class="mansion-door">
+                <img src="photos/door.png" alt="Puerta de la mansión" id="mansion-door-img">
+            </div>
+            <div class="interactive-elements">
+                <div class="spider-web" id="spider-web">
+                    <img src="photos/spider.png" alt="Araña" id="spider-img">
+                    <p class="spider-message" id="spider-message">¡Cuidado! Ese escorpión es la mascota de Miércoles... y está hambriento.</p>
+                </div>
+                <div class="ghostly-hand" id="ghostly-hand">
+                    <img src="photos/thing.png" alt="Cosa" id="thing-img-main">
+                    <div class="thing-message" id="thing-message">
+                        <p>¡Cosa te saluda! Dice que hay un pasadizo secreto por aquí...</p>
+                        <a href="pasadizo.html" class="go-to-passage">Ir al pasadizo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="call-to-action">
+                <button id="explore-btn">Explorar la Mansión</button>
+                <p class="hint">*Psst... interactúa con los elementos para descubrir secretos.</p>
+            </div>
+        </div>
         <footer>
-            <p>&copy; 2025 - Inspirado en La Familia Addams</p>
+            <p>© 2025 - Inspirado en La Familia Addams</p>
         </footer>
     </div>
     

@@ -1,6 +1,7 @@
+// Detectar clic en el botón "Entrar"
 document.getElementById('enter-btn').addEventListener('click', registrarEntrada);
 
-// Detecta la tecla "Enter"
+// Detectar tecla "Enter" en el input
 document.getElementById('username-input').addEventListener('keydown', function(event) {
     if (event.key === "Enter") {
         registrarEntrada();
@@ -11,98 +12,113 @@ document.getElementById('username-input').addEventListener('keydown', function(e
 function registrarEntrada() {
     let username = document.getElementById('username-input').value.trim();
 
-    if (!username) return; // No hacer nada si el campo está vacío
+    if (!username) return;
 
     // Guardar en localStorage
     let registros = JSON.parse(localStorage.getItem("registrosUsuarios")) || [];
     registros.push(username);
     localStorage.setItem("registrosUsuarios", JSON.stringify(registros));
-
     console.log("Historial de usuarios:", registros);
 
     if (username.toLowerCase() === "noelia") {
-        // Ocultar la pantalla de bienvenida
+        // Ocultar pantalla de bienvenida y mostrar el acertijo
         document.getElementById('welcome-screen').style.display = 'none';
-
-        // Mostrar el juego en lugar del contenido principal
-        document.getElementById("juego").style.display = "block";
-
-        // Personalizar mensaje de bienvenida
-        document.getElementById("welcome-message").textContent = `Bienvenida a la mansion Addams, ${username}`;
+        document.getElementById('juego').style.display = 'block';
     } else {
-        // Mostrar la imagen de Miércoles Addams negando el acceso
-        document.getElementById('access-denied').style.display = 'block';
+        // Mostrar imagen de Miércoles negando acceso
         document.getElementById('welcome-screen').style.display = 'none';
+        document.getElementById('access-denied').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('access-denied').style.display = 'none';
+            document.getElementById('welcome-screen').style.display = 'block';
+        }, 3000); // Ocultar después de 3 segundos y volver a la pantalla inicial
     }
 }
 
-
+// Verificar la respuesta del acertijo
 function verificarRespuesta() {
     let seleccion = document.getElementById("opciones").value;
     let mensaje = document.getElementById("mensaje");
 
-    if (seleccion === "sintonizar") {
-        mensaje.textContent = "¡Correcto! Accediendo a la mansión...";
+    if (seleccion === "sintonizar") { // Alineado con tu HTML
+        mensaje.textContent = "¡Correcto! Las puertas de la mansión se abrirán...";
         mensaje.style.color = "green";
         setTimeout(() => {
-            // Ahora sí se muestra el contenido principal
+            // Ocultar acertijo y mostrar animación de verjas
             document.getElementById("juego").style.display = "none";
-            document.getElementById("main-content").style.display = "block";
-        }, 900);
+            abrirVerjaYMostrarContenido();
+        }, 1000); // Pausa antes de abrir las verjas
     } else {
-        mensaje.textContent = "Incorrecto. Intentalo de nuevo.";
+        mensaje.textContent = "Incorrecto. Inténtalo de nuevo.";
         mensaje.style.color = "red";
     }
 }
 
+// Animación de las verjas y mostrar contenido principal
+function abrirVerjaYMostrarContenido() {
+    console.log("Animación iniciada");
+    let verjaContainer = document.getElementById("verja-container");
+    verjaContainer.style.display = "block";
 
-function mostrarJuego() {
-    let nombreUsuario = document.getElementById("nombre").value.trim();
-    if (nombreUsuario !== "") {
-        document.getElementById("registro").style.display = "none"; // Oculta el registro
-        document.getElementById("juego").style.display = "block"; // Muestra el juego
+    setTimeout(() => {
+        verjaContainer.classList.add("verja-open");
+        setTimeout(() => {
+            console.log("Mostrando contenido principal");
+            verjaContainer.style.display = "none";
+            let mainContent = document.getElementById("main-content");
+            mainContent.classList.remove("hidden");
+            mainContent.style.display = "block";
+            let username = document.getElementById('username-input').value;
+            document.getElementById("welcome-message").textContent = `Bienvenida a la Mansión Addams, ${username}`;
+        }, 2000);
+    }, 200);
+}
+
+ // Función para descubrir el pasadizo
+ function descubrirPasadizo() {
+    let decision = confirm("Has encontrado un pasadizo secreto... ¿Quieres entrar?");
+    if (decision) {
+        window.location.href = "pasadizo.html"; // Redirige a la pantalla del pasadizo
+    } else {
+        alert("Decides quedarte en la mansión...");
     }
 }
 
-function fadeOutGif() {
-    let gif = document.getElementById("wednesday-gif");
-    let finalImage = document.getElementById("final-image");
-    let messageGif = document.getElementById("message-gif");
-    let introMessage = document.getElementById("wednesday-text");
+// Interactividad para la página principal
+document.addEventListener("DOMContentLoaded", () => {
+    // Araña
+    const spider = document.getElementById("spider-web");
+    const spiderMessage = document.getElementById("spider-message");
+    if (spider && spiderMessage) {
+        spider.addEventListener("click", () => {
+            // Mostrar el mensaje
+            spiderMessage.classList.add("show");
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                spiderMessage.classList.remove("show");
+            }, 3000);
+        });
+    }
 
-    // Crear el nuevo mensaje
-    let newMessage = document.createElement("p");
-    newMessage.textContent = "PÁGINA EN CONSTRUCCIÓN. SE VIENEN COSITAS";
-    newMessage.style.position = "absolute";
-    newMessage.style.top = "50%";
-    newMessage.style.left = "50%";
-    newMessage.style.transform = "translate(-50%, -50%)";
-    newMessage.style.color = "white";
-    newMessage.style.fontSize = "20px";
-    newMessage.style.fontWeight = "bold";
-    newMessage.style.textShadow = "2px 2px 4px black";
-    newMessage.style.whiteSpace = "nowrap";
-    newMessage.style.display = "none"; // Oculto inicialmente
+    // Cosa
+    const ghostlyHand = document.getElementById("ghostly-hand");
+    const thingMessage = document.getElementById("thing-message");
+    if (ghostlyHand && thingMessage) {
+        ghostlyHand.addEventListener("click", () => {
+            // Mostrar el mensaje
+            thingMessage.classList.add("show");
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                thingMessage.classList.remove("show");
+            }, 3000);
+        });
+    }
 
-    // Obtener el contenedor de la imagen final y añadir el mensaje
-    let imageContainer = document.querySelector(".image-container");
-    imageContainer.style.position = "relative"; // Para posicionar el mensaje dentro
-    imageContainer.appendChild(newMessage);
-
-    // Desvanecer elementos antiguos
-    gif.style.opacity = "0";
-    messageGif.style.opacity = "0";
-    introMessage.style.opacity = "0";
-
-    setTimeout(() => {
-        gif.style.display = "none";
-        messageGif.style.display = "none";
-        introMessage.style.display = "none";
-
-        finalImage.style.display = "block";
-        newMessage.style.display = "block"; // Mostrar el mensaje sobre la imagen final
-    }, 1000);
-}
-
-// Efecto de palpitar sobre el mensaje de Miercoles
-document.getElementById("message-gif").classList.add("palpitar");
+    // Botón de explorar
+    const exploreBtn = document.getElementById("explore-btn");
+    if (exploreBtn) {
+        exploreBtn.addEventListener("click", () => {
+            alert("¡Prepárate! La Mansión Addams está llena de sorpresas... (Página en construcción)");
+        });
+    }
+});
