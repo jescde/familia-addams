@@ -20,13 +20,31 @@
         <h2>¡Bienvenido a la Mansión Addams!</h2>
         <p>Introduce tu nombre para continuar.</p>
         <input type="text" id="username-input" placeholder="Nombre">
-        <button id="enter-btn">Entrar</button>
+        <button id="enter-btn" onclick="mostrarJuego()">Entrar</button>
+    </div>
+
+    <!-- Pequeño acertijo -->
+    <div id="juego" class="container" style="display: none;">
+        <h2>Antes de dejarte entrar</h2>
+        <h2>Completa la frase:</h2>
+        <p>
+            "Buscando mi destino, viviendo en diferido sin ser, ni oír, ni dar.  
+            Y a cobro revertido quisiera hablar contigo, y así 
+            <select id="opciones">
+                <option value="0">[Selecciona]</option>
+                <option value="soñar">soñar</option>
+                <option value="olvidar">olvidar</option>
+                <option value="sintonizar">sintonizar</option>
+            </select>."
+        </p>
+        <button onclick="verificarRespuesta()">Comprobar</button>
+        <p id="mensaje"></p>
     </div>
 
     <!-- Imagen de Miércoles Addams para denegar acceso -->
     <div id="access-denied">
         <img src="photos/miercoles.png" alt="Acceso denegado Miércoles">
-        <p>¡Tú no eres Noelia! No puedes entrar.</p>
+        <p>¡Alto intruso! No tienes permiso para entrar aquí.</p>
     </div>
     
     
@@ -37,8 +55,16 @@
         </header>
          <main>
             <section class="intro">
-                <h2>Bienvenido a la Mansión Addams</h2>
-                <p>Descubre el mundo espeluznante y divertido de la familia más extraña y encantadora.</p>
+                <h2>Bienvenida a la Mansión Addams</h2>
+                <h2 id="wednesday-text">Así que has podido entrar...</h2>
+
+                <!-- GIF inicial -->
+                <img id="wednesday-gif" src="photos/wednesday.gif" alt="animacion" onclick="fadeOutGif()">
+
+                <!-- Imagen oculta (se mostrará después del efecto)-->
+                 <div class="image-container">
+                    <img id="final-image" src="photos/joke.png" alt="imagen revelada">
+                 </div>
             </section>
         </main>
        

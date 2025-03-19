@@ -179,3 +179,61 @@ footer {
     width: 200px;
     margin-bottom: 10px;
 }
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #333;
+}
+select, button {
+    font-size: 16px;
+    padding: 5px;
+    margin: 10px;
+}
+#mensaje {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#juego {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+}
+
+#wednesday-text {
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+#wednesday-gif {
+    cursor: pointer; /* Hace que el cursor cambie a una mano al pasar sobre el GIF */
+    transition: opacity 1s ease-out; /* Efecto de desvanecimiento en 1 segundo */
+}
+
+#final-image {
+    display: none; /* Oculta la imagen final inicialmente */
+    width: 300px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción */
+}
+
+.image-container{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente si es necesario */
+    width: 100vw; /* Ocupar todo el ancho de la pantalla */
+    height: 100vh; /* Ocupar todo el alto de la pantalla */
+}
