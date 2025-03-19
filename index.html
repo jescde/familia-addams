@@ -43,8 +43,8 @@
 
     <!-- Imagen de Miércoles Addams para denegar acceso -->
     <div id="access-denied">
-        <img src="photos/miercoles.png" alt="Acceso denegado Miércoles">
-        <p>¡Alto intruso! No tienes permiso para entrar aquí.</p>
+        <img id="miercoles-img" src="photos/miercoles.png" alt="Acceso denegado Miércoles">
+        <p>¡Alto! No tienes permiso para entrar aquí.</p>
     </div>
     
     
@@ -55,8 +55,7 @@
         </header>
          <main>
             <section class="intro">
-                <h2>Bienvenida a la Mansión Addams</h2>
-                <h2 id="wednesday-text">Así que has podido entrar...</h2>
+                <h1 id="wednesday-text">Así que has podido entrar...</h1>
 
                 <!-- GIF inicial -->
                 <img id="wednesday-gif" src="photos/wednesday.gif" alt="animacion" onclick="fadeOutGif()">
@@ -64,6 +63,7 @@
                 <!-- Imagen oculta (se mostrará después del efecto)-->
                  <div class="image-container">
                     <img id="final-image" src="photos/joke.png" alt="imagen revelada">
+                    <p id="message-gif">Pulsa sobre el gif</p>
                  </div>
             </section>
         </main>

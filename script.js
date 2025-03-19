@@ -26,6 +26,9 @@ function registrarEntrada() {
 
         // Mostrar el juego en lugar del contenido principal
         document.getElementById("juego").style.display = "block";
+
+        // Personalizar mensaje de bienvenida
+        document.getElementById("welcome-message").textContent = `Bienvenida a la mansion Addams, ${username}`;
     } else {
         // Mostrar la imagen de Miércoles Addams negando el acceso
         document.getElementById('access-denied').style.display = 'block';
@@ -72,3 +75,6 @@ function fadeOutGif() {
         finalImage.style.display = "block"; // Mostrar la imagen final
     }, 1000); // 1000ms = 1 segundo (coincide con el transition del CSS)
 }
+
+// Efecto de palpitar sobre el mensaje de Miercoles
+document.getElementById("message-gif").classList.add("palpitar");
