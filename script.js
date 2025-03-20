@@ -20,8 +20,10 @@ function registrarEntrada() {
     localStorage.setItem("registrosUsuarios", JSON.stringify(registros));
     console.log("Historial de usuarios:", registros);
 
-    if (username.toLowerCase() === "noelia") {
-        // Ocultar pantalla de bienvenida y mostrar el acertijo
+    if(username.toLowerCase() === "noelia"){
+        alert("Ese no me vale. Tu nombre de elfo");
+    } else if(username.toLowerCase() === "liendres"){
+        // Ocultar pantalla de bienvenida y mostrar acertijo
         document.getElementById('welcome-screen').style.display = 'none';
         document.getElementById('juego').style.display = 'block';
     } else {
@@ -40,7 +42,7 @@ function verificarRespuesta() {
     let seleccion = document.getElementById("opciones").value;
     let mensaje = document.getElementById("mensaje");
 
-    if (seleccion === "sintonizar") { // Alineado con tu HTML
+    if (seleccion === "hermanos gemelos") { 
         mensaje.textContent = "¡Correcto! Las puertas de la mansión se abrirán...";
         mensaje.style.color = "green";
         setTimeout(() => {

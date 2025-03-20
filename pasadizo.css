@@ -11,20 +11,31 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: relative; /* Añadimos position: relative para que los elementos con position: absolute se posicionen respecto al body */
 }
+
+/* Aseguramos que el body no empuje los elementos fuera de la vista */
+body.show-pasadizo {
+    justify-content: center; /* Mantenemos el centrado vertical para el título, párrafo y enlace */
+    padding-top: 0; /* Eliminamos el padding-top */
+}
+
 h1 {
     font-size: 3rem;
     text-shadow: 3px 3px 5px #000;
     color: #d4af37;
 }
+
 p {
     font-size: 1.5rem;
     text-shadow: 2px 2px 3px #000;
     color: #ccc;
 }
+
 a {
     display: inline-block;
     margin-top: 20px;
+    margin-bottom: 20px; /* Añadimos espacio entre el enlace y el botón */
     padding: 10px 20px;
     background: #4a2f1a;
     color: #fff;
@@ -35,8 +46,171 @@ a {
     border-radius: 5px;
     transition: background 0.3s ease, transform 0.3s ease;
 }
+
 a:hover {
     background: #d4af37;
     color: #000;
     transform: scale(1.05);
+}
+
+/* Estilos para el contenedor pasadizo-img */
+.pasadizo-img {
+    display: none; /* Ocultamos inicialmente */
+    position: absolute; /* Usamos posición absoluta para colocarlo en la esquina */
+    top: 20px; /* Ajustamos la distancia desde la parte superior */
+    right: 20px; /* Ajustamos la distancia desde la derecha */
+    flex-direction: column;
+    align-items: center; /* Centra los elementos dentro del contenedor */
+    justify-content: center;
+    padding: 10px; /* Reducimos el padding para que el contenedor sea más compacto */
+    box-sizing: border-box;
+    opacity: 0; /* Para la transición */
+    transition: opacity 0.5s ease; /* Transición suave */
+}
+
+/* Cuando se muestra el contenedor */
+.pasadizo-img.show {
+    display: flex;
+    opacity: 1;
+}
+
+.pasadizo-img img {
+    width: 100%;
+    max-width: 200px; /* Reducimos el tamaño de la imagen */
+    height: auto;
+    border: 5px solid #333; /* Borde gótico */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra para un efecto gótico */
+    margin-bottom: 10px; /* Reducimos el espacio entre la imagen y el texto */
+}
+
+.pasadizo-img p {
+    font-family: 'Creepster', cursive;
+    font-size: 1rem; /* Reducimos el tamaño del texto para que sea proporcional */
+    color: #ccc;
+    text-shadow: 2px 2px 3px #000;
+    margin: 0;
+}
+
+/* Estilos para el botón "Pulsa" */
+#show-pasadizo-btn {
+    background: #4a2f1a; /* Color de fondo coherente con el tema */
+    color: #fff;
+    border: 2px solid #d4af37;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Creepster', cursive;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#show-pasadizo-btn:hover {
+    background: #d4af37;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* Media query para iPhones 11, 13, 14, etc. (ancho entre 360px y 430px) */
+@media (max-width: 430px) and (min-width: 360px) {
+    h1 {
+        font-size: 2rem; /* Ajustado para iPhones */
+    }
+
+    p {
+        font-size: 1.2rem; /* Ajustado para iPhones */
+    }
+
+    a {
+        padding: 8px 16px;
+        font-size: 1rem; /* Ajustado */
+    }
+
+    .pasadizo-img {
+        top: 10px; /* Ajustamos la posición para iPhones */
+        right: 10px;
+        padding: 5px; /* Menos padding en iPhones */
+    }
+
+    .pasadizo-img img {
+        max-width: 150px; /* Reducimos aún más el tamaño para iPhones */
+    }
+
+    .pasadizo-img p {
+        font-size: 0.9rem; /* Ajustado para iPhones */
+    }
+
+    #show-pasadizo-btn {
+        padding: 10px 20px;
+        font-size: 1rem; /* Ajustado para iPhones */
+    }
+}
+
+/* Media query para pantallas más grandes que 430px (como tablets y ordenadores) */
+@media (min-width: 431px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+
+    a {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+    }
+
+    .pasadizo-img {
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+    }
+
+    .pasadizo-img img {
+        max-width: 200px;
+    }
+
+    .pasadizo-img p {
+        font-size: 1rem;
+    }
+
+    #show-pasadizo-btn {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Media query para pantallas muy pequeñas (menores a 360px, por si acaso) */
+@media (max-width: 359px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    a {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .pasadizo-img {
+        top: 5px;
+        right: 5px;
+        padding: 5px;
+    }
+
+    .pasadizo-img img {
+        max-width: 120px; /* Aún más pequeño para pantallas muy pequeñas */
+    }
+
+    .pasadizo-img p {
+        font-size: 0.8rem;
+    }
+
+    #show-pasadizo-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
 }
